@@ -34,12 +34,12 @@ module.exports = function(User) {
   }
   
   User.me = (req, cb) => {
-  	logger.info("토큰에 따른 프로필을 요청하는 api");
+  	// logger.info("토큰에 따른 프로필을 요청하는 api");
   	const _user = req.userInfo;
 
   	delete _user.password;
 
-  	logger.info("response data: ", _user);
+  	// logger.info("response data: ", _user);
   	return cb(null, _user);
   }
 };
