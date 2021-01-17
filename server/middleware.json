@@ -1,6 +1,4 @@
 {
-  "initial:before": {
-  },
   "initial": {
     "./middleware/tracker": {},
     "compression": {},
@@ -53,10 +51,7 @@
       ]
     }
   },
-  "files": {
-  },
-  "final": {
-  },
+  "files": {},
   "final:after": {
     "./middleware/custom-error": {},
     "strong-error-handler": {
