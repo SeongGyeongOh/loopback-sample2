@@ -1,0 +1,77 @@
+{
+  "name": "major",
+  "plural": "major",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "strictObjectIDCoercion": true,
+    "allowEternalTokens": true
+  },
+  "properties": {
+    "major": {
+      "type": "string",
+      "required": true
+    },
+    "grade": {
+      "type": "string",
+      "required": true
+    },
+    "stNum": {
+      "type": "number",
+      "required": true
+    },
+    "minor": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "accessToken",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "Allow",
+      "property": "setMajorByParams"
+    }
+  ],
+  "methods": {
+    "setMajorByParams": {
+      "accepts": [
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "major",
+          "type": "object"
+        }
+      ],
+      "http": {
+        "path": "/setmajor",
+        "verb": "post"
+      }
+    }
+  }
+}
