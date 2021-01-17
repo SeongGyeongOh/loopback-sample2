@@ -51,11 +51,10 @@
     "dataSource": "mongoDs",
     "public": true,
     "options": {
-      "emailVerificationRequired": true,
       "remoting": {
         "sharedMethods": {
           "*": false,
-          "setMajorByParams": true
+          "setMajorByUserId": true
         }
       }
     }

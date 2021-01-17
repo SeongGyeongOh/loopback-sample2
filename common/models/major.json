@@ -26,16 +26,7 @@
     }
   },
   "validations": [],
-  "relations": {
-    "accessTokens": {
-      "type": "hasMany",
-      "model": "accessToken",
-      "foreignKey": "userId",
-      "options": {
-        "disableInclude": true
-      }
-    }
-  },
+  "relations": {},
   "acls": [
     {
       "accessType": "*",
@@ -46,14 +37,30 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "Allow",
-      "property": "setMajorByParams"
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "setMajorByUserId"
     }
   ],
   "methods": {
-    "setMajorByParams": {
+    "setMajorByUserId": {
       "accepts": [
+        {
+          "arg": "major",
+          "type": "string"
+        },
+        {
+          "arg": "grade",
+          "type": "string"
+        },
+        {
+          "arg": "stNum",
+          "type": "number"
+        },
+        {
+          "arg": "minor",
+          "type": "string"
+        },
         {
           "arg": "req",
           "type": "object",
@@ -64,8 +71,8 @@
       ],
       "returns": [
         {
-          "arg": "major",
-          "type": "object"
+          "type": "object",
+          "root": true
         }
       ],
       "http": {
